@@ -3,14 +3,22 @@
 // cout instead of std::cout etc., avoiding the std:: always
 using namespace std;
 
+// windows API to interact with windows
+#include <Windows.h>
+
+// creating a fixed window size for the engine
+int nScreenWidth = 120;
+int nScreenHeight = 40;
+
 int main()
 {
-	for (int i = 0; i < 100; i++) {
-		// endl which stands for endline means for next iteration,
-		// it will start a new line
-		cout << "Namaskaaram " << i << endl;
-	}
-	// return 0 is typed so that we can indicate the successful completion of a block of code
-	// if we don't type it explicitly, it will be included anyways
-	return 0;
+	// creating screen buffer
+
+	// wchar_t is used to store wide characters
+	// characters are basically 1 byte in length
+	// in many contexts, wchar_t is usually 2 bytes
+	// new operator requests a block of memory and returns a pointer to the first element of the allocated memory
+	// new wchar_t[nScreenWidth * nScreenHeight]; this part of the code requests from memory space to store wchar_t type elements and requests nScreenWidth * nScreenHeight size from the memory
+	// wchar_t* screen this part creates a pointer type variable called screen which points to the memory location allocated using the new keyword
+	wchar_t* screen = new wchar_t[nScreenWidth * nScreenHeight];
 }
