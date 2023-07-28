@@ -31,4 +31,14 @@ int main()
 	// 4th parameter indicates we are making a text mode screen buffer because we are using characters or texts to create the whole map
 	// last parameter as NULL says that we are not setting any security descriptors: eg: access rights - those who can access the application
 	HANDLE hConsole = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
+	// by this we are saying that when we run the application, we must use hConsole
+	SetConsoleActiveScreenBuffer(hConsole);
+	// DWORD is a datatype coming with windows API
+	// it is 4 bytes in size opposed to 2 bytes of wchar_t
+	// it is commonly used for storing sizes, counts, or other values that don't need to be negative
+	// the dw in dwBytesWritten is a common prefix for DWORD datatype variables
+	// we initialise the variable with value of 0
+	DWORD dwBytesWritten = 0;
+
+	return 0;
 }
