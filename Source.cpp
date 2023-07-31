@@ -10,6 +10,19 @@ using namespace std;
 int nScreenWidth = 120;
 int nScreenHeight = 40;
 
+// Creating player position(X, Y) and angle(A) at which player is looking at
+// Adding f at the end of floating point numbers makes it 0 single-precision floating point numbers
+float fPlayerX = 0.0f;
+float fPlayerY = 0.0f;
+float fPlayerA = 0.0f;
+
+// Creating the map variables
+int nMapHeight = 16;
+int nMapWidth = 16;
+
+// setting FOV (field of view)
+float fFov = 3.14159 / 4.0;
+
 int main()
 {
 	// Creating a screen buffer
@@ -43,11 +56,49 @@ int main()
 	// We initialize the variable with the value of 0.
 	DWORD dwBytesWritten = 0;
 
+	// Map
+	// storing the map as wstring
+	wstring map;
+
+	// drawing the map
+	// since we declared 16 units as height and width of the map, we use 16x16 # symbols to create the map
+	// we cleared many of the # symbols to make the map look like it has a boundary and filling it with . means we can properly show the player position
+	map += L'################'; // using the +=, we are appending the string to the map variable
+	map += L'#..............#'; // using L before the string tells the program that we are using wide characters
+	map += L'#..............#';	// wide characters are used to store unicodes, symbols etc. eg: hindi letters, chinese etc
+	map += L'#..............#';
+	map += L'#..............#';
+	map += L'#..............#';
+	map += L'#..............#';
+	map += L'#..............#';
+	map += L'#..............#';
+	map += L'#..............#';
+	map += L'#..............#';
+	map += L'#..............#';
+	map += L'#..............#';
+	map += L'#..............#';
+	map += L'#..............#';
+	map += L'################';
+
+
+
+
 	// Game Loop
 	// The game loop runs indefinitely (infinite loop) to keep the game/application running and responsive.
 	// It continuously updates the game state and redraws the screen to create dynamic and interactive content.
 	// The loop will keep executing until explicitly stopped by an external condition or user input.
 	while (1) {
+
+		// Ray-Casting formula
+		// looping through each column or the screenwidth so as to calculate the ray angle to each column
+		for (int x = 0; x < nScreenWidth; x++) {
+
+			// for each column, calculate the projected ray angle into the world space
+			float fRayAngle = (fPlayerA - fFov / 2.0f) + ((float)x / (float)nScreenWidth) * fFov;
+		
+		}
+
+
 		// Set the last character of the screen buffer to '\0' (null terminator).
 		// This is essential when dealing with text to properly handle string termination.
 		screen[nScreenWidth * nScreenHeight - 1] = '\0';
